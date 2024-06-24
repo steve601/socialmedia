@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Web app</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                background-image: url("{{url_for('static',filename = 'social.JPG')}}");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+            }
+            h1{
+                text-align: center;
+            }
+            .content {
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .content p{
+                font-size: 18px;
+            }
+            form{
+               padding-left:340px;
+               padding-top:180px;
+               width:550px;
+            }
+            h2{
+                padding-left:350px;
+            }
+            .form-container {
+                display: flex;
+            }
+            
+            .column {
+                flex: 1;
+                margin: 0 10px;
+            }
+            .column input{
+                height: 30px;
+                width: 75%;
+                padding: 0 10px;
+                border-radius: 8px;
+            }
+            .column select{
+                height: 33px;
+                width: 85%;
+                padding: 0 10px;
+                border: 2px solid;
+                border-radius: 8px;
+            }
+            .column label{
+                font-weight: bold;
+            }
+            .column button{
+                height:20px;
+                width:75px;
+                font-weight: bold;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <h1>SOCIAL MEDIA USAGE ANALYSIS</h1>
+        <div class="content">
+            <p>Social media has profoundly transformed modern society,shaping how we communicate, access information, and perceive the world
+                .It facilitates instant connectivity, allowing people to maintain relationships across great distances and enabling the rapid
+                 dissemination of news and ideas. However, this pervasive influence comes with significant drawbacks, including the spread of 
+                 misinformation, the erosion of privacy, and the potential for heightened anxiety and depression due to online comparison and 
+                 cyberbullying.
+            </p>
+            <p>This application aims at predicting the emotion of a user influenced by interation with different social media platforms
+                based on some entities.
+            </p>
+        </div><br>
+        <form action="/predict" method='POST' class='form-container'>
+            <div class="column">  
+                <label for="age">User's Age</label><br>
+                <input type="number" name='age' value='age' min=10 max=80><br>
+                <label for="gender">User's Gender</label><br>
+                <select name="gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select><br>
+                <label for="platform">Social Media Platform</label><br>
+                <select name="platform" id="platform">
+                    <option value="Instagram">Instagram</option>
+                    <option value="Twitter">Twitter</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Whatsapp">Whatsapp</option>
+                    <option value="Telegram">Telegram</option>
+                    <option value="Snapchat">Snapchat</option>
+                </select><br>
+                <label for="usg/day(mins)">Usage Per Day(minutes)</label><br>
+                <input type="number" name='usg/day(mins)' value='usg/day(mins)'><br><br>
+                <button type='submit'>Predict</button>
+            </div>
+            <div class="column">  
+                <label for="post/day">Posts User Makes Per Day</label><br>
+                <input type="number" name='post/day' value='post/day'><br>
+                <label for="likesRcved/day">Likes User Recieves Per Day</label><br>
+                <input type="number" name='likesRcved/day' value='likesRcved/day'><br>
+                <label for="commentsRcved/day">Comments User Recieves Per Day</label><br>
+                <input type="number" name='commentsRcved/day' value='commentsRcved/day'><br>
+                <label for="msgsSent/day">Messages User Sends Per Day</label><br>
+                <input type="number" name='msgsSent/day' value='msgsSent/day'><br>
+            </div>
+        </form><br>
+        <h2>{{ text }}</h2>
+    </body>
+</html>
